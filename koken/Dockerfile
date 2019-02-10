@@ -3,7 +3,7 @@ FROM alpine:3.9
 # Install packages
 RUN apk --no-cache add php7 php7-fpm php7-mysqli php7-json php7-openssl php7-curl \
     php7-zlib php7-xml php7-phar php7-intl php7-dom php7-xmlreader php7-ctype \
-    php7-mbstring php7-gd supervisor curl ffmpeg php7-imagick imagemagick nginx nginx-mod-rtmp
+    php7-mbstring php7-gd supervisor curl unzip ffmpeg php7-imagick imagemagick nginx nginx-mod-rtmp
 
 # Configure nginx
 COPY config/nginx.conf /etc/nginx/nginx.conf
@@ -24,7 +24,7 @@ RUN chown -R nobody.nobody /run && \
 # Setup document root
 RUN mkdir -p /var/www/html
 
-RUN wget https://s3.amazonaws.com/koken-installer/releases/Koken_Installer.zip -O /var/www/Koken_Installer.zip && unzip /var/www/Koken_Installer.zip -o -d src/
+RUN wget https://s3.amazonaws.com/koken-installer/releases/Koken_Installer.zip -O /var/www/Koken_Installer.zip
 
 # Switch to use a non-root user from here on
 USER nobody
