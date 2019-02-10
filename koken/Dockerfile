@@ -24,7 +24,7 @@ RUN chown -R nobody.nobody /run && \
 # Setup document root
 RUN mkdir -p /var/www/html
 
-RUN wget https://s3.amazonaws.com/koken-installer/releases/Koken_Installer.zip -O /var/www/Koken_Installer.zip && unzip -o -d src/
+RUN wget https://s3.amazonaws.com/koken-installer/releases/Koken_Installer.zip -O /var/www/Koken_Installer.zip && unzip /var/www/Koken_Installer.zip -o -d src/
 
 # Switch to use a non-root user from here on
 USER nobody
