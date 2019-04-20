@@ -9,7 +9,7 @@
 *      $DB_USER_PASSWORD
 
 * curl https://s3.amazonaws.com/koken-installer/releases/Koken_Installer.zip --output html/1.zip && unzip html/1.zip -d html/ #test
-* chmod 777 html/koken/index.php
+* chmod -R 777 html/koken
 * apt-get update && apt install apache2-utils -y && htpasswd koken/config/.htpasswd www
 * docker-compose up -d --build
 
