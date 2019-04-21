@@ -9,5 +9,5 @@ chmod -R 777 html/koken || exit 1
 apt-get update && apt install apache2-utils -y && htpasswd koken/config/.htpasswd $1 || exit 1
 docker-compose up -d --build || exit 1
 echo 'All done!'
-bash -c 'sleep 1 && rm finish-install.sh' &
+bash -c 'sleep 1 && rm finish-installation-script.sh' &
 
