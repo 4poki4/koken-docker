@@ -33,7 +33,7 @@ USER nobody
 WORKDIR /var/www/html
 COPY --chown=nobody src/ /var/www/html/
 
-RUN unzip /var/www/Koken_Installer.zip -d /var/www/html/ && rm /var/www/Koken_Installer.zip
+RUN unzip /var/www/Koken_Installer.zip -d /var/www/html/ && chmod -R 777 /var/www/html/koken && rm /var/www/Koken_Installer.zip
 
 # Expose the port nginx is reachable on
 EXPOSE 8080
