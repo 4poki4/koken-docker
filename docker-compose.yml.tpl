@@ -4,7 +4,7 @@ services:
   koken:
     build: koken
     ports:
-      - 80:8080
+      - 8080:8080
       - 443:443
       - 1935:1935
     volumes:
