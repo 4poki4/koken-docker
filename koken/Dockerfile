@@ -15,19 +15,11 @@ COPY config/php.ini /etc/php7/conf.d/zzz_custom.ini
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-
-
 # Setup document root
 RUN mkdir -p /var/www/html
 
 # Add application
 WORKDIR /var/www/html
-
-RUN wget https://s3.amazonaws.com/koken-installer/releases/Koken_Installer.zip -O /var/www/Koken_Installer.zip
-
-RUN unzip /var/www/Koken_Installer.zip -d /var/www/html/ && rm /var/www/Koken_Installer.zip
-RUN mv /var/www/html/koken/index.php  /var/www/html/koken/index1.php && cat /var/www/html/koken/index1.php | sed "s/loopback\['fail'\]/loopback\['true'\]/g" > /var/www/html/koken/index.php && rm /var/www/html/koken/index1.php 
-RUN chmod -R 777 /var/www/html/koken 
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
 RUN chown -R nobody.nobody /run && \
