@@ -8,6 +8,6 @@ mv html/koken/index.php html/koken/index1.php && cat html/koken/index1.php | sed
 chmod -R 777 html/koken || exit 1
 apt-get update && apt install apache2-utils pwgen gettext -y && htpasswd koken/config/.htpasswd $1 || exit 1
 cat docker-compose.yml.tpl | sed 's/\$DB_ROOT_PASSWORD/'`pwgen -1`'/g' | sed 's/\$DB_DATABASE/kooken_db_'`pwgen -1`'/g' | sed 's/\$DB_USER_PASSWORD/'`pwgen -1`'/g' | sed 's/\$DB_USER/koken_'`pwgen -1`'/g' > docker-compose.yml && rm docker-compose.yml.tpl || exit 1
-docker-compose up -d --build || exit 1
+docker-compose up -d --build --force-recreate || exit 1
 bash -c 'sleep 1 && rm finish-installation.sh || exit 1' &
 
