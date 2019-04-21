@@ -3,14 +3,14 @@ FROM alpine:latest
 # Install packages
 RUN apk --no-cache add php7 php7-fpm php7-mysqli php7-json php7-openssl php7-curl \
     php7-zlib php7-xml php7-phar php7-intl php7-dom php7-xmlreader php7-ctype \
-    php7-mbstring php7-gd supervisor curl unzip ffmpeg php7-imagick imagemagick nginx nginx-mod-rtmp unzip
+    php7-mbstring php7-gd supervisor curl ffmpeg php7-imagick imagemagick nginx nginx-mod-rtmp unzip
 
 # Configure nginx
 COPY config/nginx.conf /etc/nginx/nginx.conf
 
 # Configure PHP-FPM
 COPY config/fpm-pool.conf /etc/php7/php-fpm.d/www.conf
-COPY config/php.ini /etc/php7/conf.d/zzz_custom.ini
+COPY config/php.ini /etc/php7/conf.d/custom_php.ini
 
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
