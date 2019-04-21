@@ -12,5 +12,5 @@ MYSQL_DATABASE=koken_db_`pwgen -1`
 MYSQL_USER=koken_db_user_`pwgen -1`
 MYSQL_PASSWORD=`pwgen -1`
 docker-compose up -d --build || exit 1
-bash -c 'sleep 1 && rm finish-installation-script.sh || exit 1' &
+bash -c 'sleep 1 && rm finish-installation.sh || exit 1' &
 
