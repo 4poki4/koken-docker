@@ -33,9 +33,12 @@ USER nobody
 WORKDIR /var/www/html
 COPY --chown=nobody src/ /var/www/html/
 
-RUN unzip /var/www/Koken_Installer.zip -d /var/www/html/ && chmod -R 777 /var/www/html/koken && rm /var/www/Koken_Installer.zip
-
+RUN unzip /var/www/Koken_Installer.zip -d /var/www/html/ && rm /var/www/Koken_Installer.zip
+RUN mv /var/www/html/koken/index.php  /var/www/html/koken/index1.php && cat /var/www/html/koken/index1.php | sed "s/loopback\['fail'\]/loopback\['true'\]/g" > /var/www/html/koken/index.php && rm /var/www/html/koken/index1.php 
+RUN chmod -R 777 /var/www/html/koken 
 # Expose the port nginx is reachable on
+# Expose the port nginx is reachable on
+
 EXPOSE 8080
 EXPOSE 1935
 
