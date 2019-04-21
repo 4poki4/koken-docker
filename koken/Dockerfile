@@ -1,9 +1,9 @@
-FROM alpine:3.9
+FROM alpine:latest
 
 # Install packages
 RUN apk --no-cache add php7 php7-fpm php7-mysqli php7-json php7-openssl php7-curl \
     php7-zlib php7-xml php7-phar php7-intl php7-dom php7-xmlreader php7-ctype \
-    php7-mbstring php7-gd supervisor curl unzip ffmpeg php7-imagick imagemagick nginx nginx-mod-rtmp
+    php7-mbstring php7-gd supervisor curl unzip ffmpeg php7-imagick imagemagick nginx nginx-mod-rtmp unzip
 
 # Configure nginx
 COPY config/nginx.conf /etc/nginx/nginx.conf
@@ -33,6 +33,7 @@ USER nobody
 WORKDIR /var/www/html
 COPY --chown=nobody src/ /var/www/html/
 
+RUN unzip /var/www/Koken_Installer.zip -d /var/www/html/ && rm /var/www/Koken_Installer.zip
 
 # Expose the port nginx is reachable on
 EXPOSE 8080
