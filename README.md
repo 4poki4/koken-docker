@@ -13,7 +13,7 @@ git clone https://github.com/4poki4/koken-docker && \
 
 After installation you will see credentials for access to database in docker-compose.yml
 
-For use with authentification uncomment these lines in ./config/nginx.conf
+For use with http authentification uncomment these lines in ./config/nginx.conf
 ```
     #auth_basic "Auth";
     #auth_basic_user_file /var/www/.htpasswd;
