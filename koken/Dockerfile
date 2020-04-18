@@ -21,24 +21,13 @@ RUN mkdir -p /var/www/html
 # Add application
 WORKDIR /var/www/html
 
-# Make sure files/folders needed by the processes are accessable when they run under the nobody user
-RUN chown -R nobody.nobody /run && \
-  chown -R nobody.nobody /var/lib/nginx && \
-  mkdir -p /var/tmp/nginx && \
-  chown -R nobody.nobody /var/tmp/nginx && \
-  chown -R nobody.nobody /var/log/nginx
-  
-# Switch to use a non-root user from here on
-USER nobody
-
-# Expose the port nginx is reachable on
 # Expose the port nginx is reachable on
 
-EXPOSE 8080
+EXPOSE 80
 EXPOSE 1935
 
 # Let supervisord start nginx & php-fpm
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
 # Configure a healthcheck to validate that everything is up&running
-HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:8080/fpm-ping
+HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:80/fpm-ping
