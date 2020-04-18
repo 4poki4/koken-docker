@@ -12,7 +12,7 @@ services:
       - ./koken/config/.htpasswd:/var/www/.htpasswd
       - ./koken/config/mime.types:/etc/nginx/mime.types
       - ./koken/config/nginx.conf:/etc/nginx/nginx.conf
-      - ./logs/access.log:/var/log/nginx-access.log
+      - ./logs/nginx-access.log:/var/log/nginx-access.log
       - ./logs/nginx-error.log:/var/log/nginx-error.log
 
 
