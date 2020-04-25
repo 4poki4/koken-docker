@@ -3,7 +3,7 @@ version: '2'
 services:
 
   mysql:
-    image: yobasystems/alpine-mariadb
+    image: mysql:5.7
     ports:
       - 3306:3306
     environment:
