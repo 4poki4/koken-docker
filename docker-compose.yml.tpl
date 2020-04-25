@@ -15,9 +15,8 @@ services:
       - ./logs/nginx-access.log:/var/log/nginx-access.log
       - ./logs/nginx-error.log:/var/log/nginx-error.log
 
-
   mysql:
-    image: mysql:5.7
+    image: yobasystems/alpine-mariadb
     ports:
       - 3306:3306
     environment:
@@ -25,5 +24,7 @@ services:
       MYSQL_DATABASE: $DB_DATABASE
       MYSQL_USER: $DB_USER
       MYSQL_PASSWORD: $DB_USER_PASSWORD
+      MYSQL_CHARSET: utf8
+      MYSQL_COLLATION: utf8_general_ci
     volumes:
       - ./dbdata:/var/lib/mysql
