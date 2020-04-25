@@ -12,7 +12,7 @@ services:
       MYSQL_USER: $DB_USER
       MYSQL_PASSWORD: $DB_USER_PASSWORD
     volumes:
-      - ./dbdata:/data/db
+      - ./dbdata:/var/lib/mysql
 
   koken:
     build: koken
