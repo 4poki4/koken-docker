@@ -1,6 +1,24 @@
 version: '2'
 
 services:
+
+  mysql:
+    image: nimmis/alpine-mariadb
+    ports:
+      - 3306:3306
+    environment:
+      MARIADB_ALLOW_EMPTY_PASSWORD=no
+      MARIADB_RANDOM_ROOT_PASSWORD=no
+      MARIADB_REMOTE_ROOT=no
+      MARIADB_ROOT_PASSWORD: $DB_ROOT_PASSWORD
+      MARIADB_DATABASE: $DB_DATABASE
+      MARIADB_USER: $DB_USER
+      MARIADB_PASSWORD: $DB_USER_PASSWORD
+    volumes:
+      - ./mysql/db:/data/db
+      - ./mysql/conf:/data/conf
+      - ./mysql/logs:/data/logs
+
   koken:
     build: koken
     ports:
@@ -15,16 +33,3 @@ services:
       - ./logs/nginx-access.log:/var/log/nginx-access.log
       - ./logs/nginx-error.log:/var/log/nginx-error.log
 
-  mysql:
-    image: yobasystems/alpine-mariadb
-    ports:
-      - 3306:3306
-    environment:
-      MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
-      MYSQL_DATABASE: $DB_DATABASE
-      MYSQL_USER: $DB_USER
-      MYSQL_PASSWORD: $DB_USER_PASSWORD
-      MYSQL_CHARSET: utf8
-      MYSQL_COLLATION: utf8_general_ci
-    volumes:
-      - ./dbdata:/var/lib/mysql
