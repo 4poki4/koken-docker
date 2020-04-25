@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir -p html logs dbdata || exit 1
+mkdir -p html logs mysql/db || exit 1
 touch logs/nginx-access.log && chmod 666 logs/nginx-access.log || exit 1
 touch logs/nginx-error.log && chmod 666 logs/nginx-error.log || exit 1
 apt-get update && apt install apache2-utils pwgen -y && htpasswd koken/config/.htpasswd $1 || exit 1

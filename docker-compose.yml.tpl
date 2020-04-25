@@ -12,7 +12,8 @@ services:
       MYSQL_USER: $DB_USER
       MYSQL_PASSWORD: $DB_USER_PASSWORD
     volumes:
-      - ./dbdata:/var/lib/mysql
+      - ./mysql/db:/var/lib/mysql
+      - ./mysql/conf/mysql-minimal.cnf:/etc/mysql/conf.d/mysql-minimal.cnf
 
   koken:
     build: koken
