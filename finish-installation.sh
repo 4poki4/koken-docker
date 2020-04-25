@@ -10,6 +10,6 @@ mv html/koken/index.php html/koken/index1.php && cat html/koken/index1.php | sed
 chmod -R 777 html || exit 1
 cat docker-compose.yml.tpl | sed 's/\$DB_ROOT_PASSWORD/'`pwgen -1`'/g' | sed 's/\$DB_DATABASE/koken_db_'`pwgen -1`'/g' | sed 's/\$DB_USER_PASSWORD/'`pwgen -1`'/g' | sed 's/\$DB_USER/koken_'`pwgen -1`'/g' > docker-compose.yml && rm docker-compose.yml.tpl || exit 1
 docker-compose up -d --build --force-recreate || exit 1
-rm finish-installation.sh || exit 1
+rm -rf finish-installation.sh .git || exit 1
 echo '      MYSQL_HOST: mysql'
 cat docker-compose.yml | egrep 'MYSQL_DATABASE|MYSQL_USER|MYSQL_PASSWORD'
