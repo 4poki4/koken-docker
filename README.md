@@ -2,7 +2,6 @@ Requirements:
 ```
 docker
 docker-compose
-pwgen
 ```
 
 Install:
